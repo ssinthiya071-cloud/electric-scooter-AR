@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Electric Scooter AR Experience</title>
+
+  <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+
+  <style>
+    body { margin: 0; overflow: hidden; }
+
+    #ui {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+    }
+
+    button {
+      padding: 8px 14px;
+      margin: 5px;
+      font-size: 14px;
+      border-radius: 8px;
+    }
+
+    #info {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      padding: 10px;
+      border-radius: 10px;
+      display: none;
+      z-index: 20;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- UI Buttons -->
+<div id="ui">
+  <button onclick="show('battery')">Battery</button>
+  <button onclick="show('speed')">Speed</button>
+  <button onclick="show('eco')">Eco</button>
+</div>
+
+<div id="info"></div>
+
+<a-scene
+  mindar-image="imageTargetSrc: marker.mind;"
+  vr-mode-ui="enabled: false"
+  embedded
+  renderer="colorManagement: true">
+
+  <a-camera position="0 0 0" look-controls></a-camera>
+  <a-assets>
+    <a-asset-item id="scooterModel" src="scooter.glb"></a-asset-item>
+  </a-assets>
+  <a-entity mindar-image-target="targetIndex:0"
+  gltf-model="#scooterModel"
+  scale="0.3 0.3 0.3"
+  postion="0 0 0">
+
+  </a-entity>
+  <!-- Target -->
+  <a-entity mindar-image-target="targetIndex: 0">
+    <a-box color="red" position="0 0 0.3"></a-box>
+
+    <!-- Scooter -->
+    <a-entity id="scooter"
+      gltf-model="scooter.glb"
+      scale="0.6 0.6 0.6"
+      rotation="0 180 0"
+      animation="property: rotation; to: 0 540 0; loop: true; dur: 10000"
+      gesture-handler>
+    </a-entity>
+
+    <!-- Hotspots -->
+    <a-sphere position="0 1 0.3" radius="0.05" color="red"></a-sphere>
+    <a-sphere position="0 0.6 -0.4" radius="0.05" color="green"></a-sphere>
+    <a-sphere position="0.4 0.5 0" radius="0.05" color="blue"></a-sphere>
+
+  </a-entity>
+</a-scene>
+
+<script>
+function show(type) {
+  let info = document.getElementById("info");
+  info.style.display = "block";
+
+  if (type === "battery")
+    info.innerHTML = "🔋 Range: 200 km<br>Fast Charging Supported";
+
+  if (type === "speed")
+    info.innerHTML = "⚡ Top Speed: 128 km/h<br>0–60 in 4 sec";
+
+  if (type === "eco")
+    info.innerHTML = "🌱 100% Electric<br>Zero Emission Vehicle";
+}
+</script>
+
+</body>
+</html>
