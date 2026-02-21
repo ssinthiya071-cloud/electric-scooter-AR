@@ -81,13 +81,13 @@ function show(type) {
   panel.setAttribute("visible", true);
 
   if (type === "battery")
-    text.setAttribute("value", "🔋 Range: 200 km\nFast Charging Supported");
+    text.setAttribute("value", "🔋High Density Lithium Battery\nRange: upto 200 km per charge\nFast Charging: 0-80% in 30-40 min");
 
   if (type === "speed")
-    text.setAttribute("value", "⚡ Top Speed: 128 km/h\n0–60 in 4 sec");
+    text.setAttribute("value", "⚡ Top Speed: 128 km/h-Super impressive.");
 
   if (type === "eco")
-    text.setAttribute("value", "🌱 100% Electric\nZero Emission Vehicle");
+    text.setAttribute("value", "🌱 100% Electric\nZero Emission Vehicle\nLow noise pollution");
 }
 </script>
 
@@ -136,6 +136,8 @@ function show(type) {
       scale="0.5 0.5 0.5">
     </a-gltf-model>
 
+    <a-light type="point" color="#ffffff" intensity="1.5" position="0 0.5 1"></a-light>
+
     <!-- AR Info Panel -->
     <a-plane 
       id="infoPanel"
@@ -163,6 +165,7 @@ function show(type) {
 
 </body>
 </html>
+
 
 
 
