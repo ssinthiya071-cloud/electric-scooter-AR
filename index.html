@@ -96,14 +96,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const scene = document.querySelector("a-scene");
   const ui = document.querySelector("#ui");
 
-  scene.addEventListener("loaded", () => {
-    // small delay so camera permission finish aagum
-    setTimeout(() => {
+  scene.addEventListener("arReady", () => {
       ui.style.display = "flex";  // show buttons
-    }, 1500);
-  });
-
 });
+
+
 </script>
 
 <!-- UI Buttons -->
@@ -180,6 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
