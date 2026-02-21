@@ -22,7 +22,7 @@
       display: flex; 
       flex-direction: column; 
       gap: 10px; 
-      z-index: 9999; /* AR camera மேல show ஆக */
+      z-index: 9999;
     }
     
     button { 
@@ -38,7 +38,7 @@
   </style>
 </head>
 <body>
-  <!-- UI Buttons - AR Camera மேல Fixed -->
+  <!-- UI Buttons -->
   <div id="ui">
     <button onclick="show('battery')">Battery</button>
     <button onclick="show('speed')">Speed</button>
@@ -85,11 +85,11 @@ function show(type) {
 
   // Update description text
   if (type === "battery")
-    text.setAttribute("value", "🔋High Density Lithium Battery Range: upto 200 km per charge Fast Charging: 0-80% in 30-40 min");
+    text.setAttribute("value", "🔋High Density Lithium Battery\nRange: upto 200 km per charge\nFast Charging: 0-80% in 30-40 min");
   if (type === "speed")
     text.setAttribute("value", "⚡ Top Speed: 128 km/h-Super impressive.");
   if (type === "eco")
-    text.setAttribute("value", "🌱 100% Electric Zero Emission Vehicle Low noise pollution");
+    text.setAttribute("value", "🌱 100% Electric,Zero-Emission Vehicle\nLow noise pollution");
 
   // Play your local audio file
   let audio = document.querySelector('#audio-' + type);
@@ -133,6 +133,7 @@ function show(type) {
   </a-scene>
 </body>
 </html>
+
 
 
 
