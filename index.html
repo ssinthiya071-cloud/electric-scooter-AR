@@ -10,7 +10,7 @@
   <!-- aframe-ar (markerless) -->
   <script src="./aframe-ar-main/dist/aframe-ar.min.js"></script>
 
-  <title>MarkLess AR</title>
+  <title>Markerless AR Scooter</title>
 
   <style>
     body { margin:0; overflow:hidden; font-family:Arial; }
@@ -31,19 +31,6 @@
       background: #111;
       color: white;
       font-size: 14px;
-    }
-
-    #info {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0,0,0,0.7);
-      color: white;
-      padding: 15px;
-      border-radius: 10px;
-      display: none;
-      z-index: 10;
     }
   </style>
 </head>
@@ -75,40 +62,41 @@ AFRAME.registerComponent('ar-logic',{
 window.addEventListener('touchstart', function(){
 
   let circle = document.querySelector("#circle");
-  let model = document.querySelector("#scooty");
+  let wrapper = document.querySelector("#scootyWrapper");
 
   let pos = circle.getAttribute('position');
-  model.setAttribute('position', pos);
+  wrapper.setAttribute('position', pos);
 
 });
 
-// Info panel
+// Show AR Info Text
 function show(type) {
-  let info = document.getElementById("info");
-  info.style.display = "block";
+
+  let panel = document.querySelector("#infoPanel");
+  let text = document.querySelector("#arText");
+
+  panel.setAttribute("visible", true);
 
   if (type === "battery")
-    info.innerHTML = "🔋 Range: 200 km<br>Fast Charging Supported";
+    text.setAttribute("value", "🔋 Range: 200 km\nFast Charging Supported");
 
   if (type === "speed")
-    info.innerHTML = "⚡ Top Speed: 128 km/h<br>0–60 in 4 sec";
+    text.setAttribute("value", "⚡ Top Speed: 128 km/h\n0–60 in 4 sec");
 
   if (type === "eco")
-    info.innerHTML = "🌱 100% Electric<br>Zero Emission Vehicle";
+    text.setAttribute("value", "🌱 100% Electric\nZero Emission Vehicle");
 }
 </script>
 
-<!-- UI -->
+<!-- UI Buttons -->
 <div id="ui">
   <button onclick="show('battery')">Battery</button>
   <button onclick="show('speed')">Speed</button>
   <button onclick="show('eco')">Eco</button>
 </div>
 
-<div id="info"></div>
-
 <!-- AR Scene -->
-<a-scene ar>
+<a-scene ar ar-logic>
 
   <!-- Camera with Raycaster -->
   <a-camera 
@@ -117,7 +105,7 @@ function show(type) {
     raycaster="objects: #ground;">
   </a-camera>
 
-  <!-- Invisible ground -->
+  <!-- Invisible Ground -->
   <a-plane 
     id="ground"
     rotation="-90 0 0"
@@ -135,13 +123,38 @@ function show(type) {
     color="yellow">
   </a-ring>
 
-  <!-- GLB Model -->
-  <a-gltf-model 
-    id="scooty"
-    src="./scooter.glb.glb"
-    scale="5 5 5"
-    position="0 0 -3">
-  </a-gltf-model>
+  <!-- Wrapper (Model + AR Text Together) -->
+  <a-entity id="scootyWrapper" position="0 0 -3">
+
+    <!-- GLB Model -->
+    <a-gltf-model 
+      id="scooty"
+      src="./scooter.glb"
+      scale="5 5 5">
+    </a-gltf-model>
+
+    <!-- AR Info Panel -->
+    <a-plane 
+      id="infoPanel"
+      color="black"
+      opacity="0.7"
+      width="1.8"
+      height="0.6"
+      position="0 1.5 0"
+      visible="false">
+
+      <a-text
+        id="arText"
+        value=""
+        align="center"
+        color="white"
+        width="1.7"
+        position="0 0 0.01">
+      </a-text>
+
+    </a-plane>
+
+  </a-entity>
 
 </a-scene>
 
