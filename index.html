@@ -89,19 +89,6 @@ function show(type) {
   if (type === "eco")
     text.setAttribute("value", "🌱 100% Electric\nZero Emission Vehicle\nLow noise pollution");
 
-   let model = document.querySelector("#scooty").getObject3D("mesh");
-
-function changeColor(color){
-
- let model = document.querySelector("#scooty").getObject3D("mesh");
-
- model.traverse(node=>{
-   if(node.isMesh){
-     node.material.color.set(color);
-   }
- });
-
-}
 }
 </script>
 
@@ -110,11 +97,6 @@ function changeColor(color){
   <button onclick="show('battery')">Battery</button>
   <button onclick="show('speed')">Speed</button>
   <button onclick="show('eco')">Eco</button>
-  <button onclick="changeColor('#ff0000')">Red</button>
-  <button onclick="changeColor('#00ff00')">Green</button>
-  <button onclick="changeColor('#0000ff')">Blue</button>
-  <button onclick="changeColor('#111111')">Black</button>
-  <button onclick="changeColor('#ffffff')">White</button>
 </div>
 
 <!-- AR Scene -->
