@@ -127,7 +127,7 @@ function show(type) {
   </a-ring>
 
   <!-- Wrapper (Model + AR Text Together) -->
-  <a-entity id="scootyWrapper" position="0 0 -3">
+  <a-entity id="scootyWrapper" position="0 0 -3" animation="property: rotation; to: 0 360 0; loop: true; dur: 4000; easing: linear;">>
 
     <!-- GLB Model -->
     <a-gltf-model 
@@ -136,8 +136,7 @@ function show(type) {
       scale="0.5 0.5 0.5">
     </a-gltf-model>
 
-    <a-light type="point" color="#ffffff" intensity="1.5" position="0 0.5 1"></a-light>
-
+    
     <!-- AR Info Panel -->
     <a-plane 
       id="infoPanel"
@@ -165,6 +164,7 @@ function show(type) {
 
 </body>
 </html>
+
 
 
 
