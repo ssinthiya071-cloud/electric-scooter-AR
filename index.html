@@ -65,7 +65,7 @@ AFRAME.registerComponent('ar-logic',{
   }
 });
 
-// Place model on tap (buttons தவிர)
+// Place model on tap 
 window.addEventListener('touchstart', function(e){
   if(e.target.tagName !== 'BUTTON') {
     let circle = document.querySelector("#circle");
@@ -124,7 +124,7 @@ function show(type) {
         <a-text id="arText" value="" align="center" color="white" width="1.7" position="0 0 0.01"></a-text>
       </a-plane>
 
-      <!-- உங்க Audio Files இங்கே Insert பண்ணுங்க (VS Code-ல) -->
+
       <a-sound id="audio-battery" src="./Audios/battery.mp3" autoplay="false" positional="false" volume="0.8"></a-sound>
       <a-sound id="audio-speed" src="./Audios/speed.mp3" autoplay="false" positional="false" volume="0.8"></a-sound>
       <a-sound id="audio-eco" src="./Audios/eco.mp3" autoplay="false" positional="false" volume="0.8"></a-sound>
@@ -133,6 +133,7 @@ function show(type) {
   </a-scene>
 </body>
 </html>
+
 
 
 
